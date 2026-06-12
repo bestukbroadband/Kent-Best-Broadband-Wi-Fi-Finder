@@ -7,7 +7,7 @@ export default defineConfig(() => {
   return {
     // Use base: "/" only for a custom domain or root deployment.
     // Use base: "/best-broadband-kent/" for GitHub Pages project deployment.
-    base: "/best-broadband-kent/",
+ base: "/best-broadband-kent/",
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
