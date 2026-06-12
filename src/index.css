@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #107c91; /* Teal Blue */
+  --color-brand-green-hover: #0c5e6e;
+  --color-brand-green-light: #ecfeff;
+  --color-brand-blue: #085175; /* Coastal Blue */
+  --color-brand-blue-hover: #063c57;
+  --color-brand-blue-light: #e0f2fe;
+  --color-brand-gold: #e29930; /* Golden Amber sun accent */
+  --color-brand-gold-hover: #c27d1b;
+  --color-brand-gold-light: #fef3c7;
+  --color-brand-bg: #fbfbfa; /* Soft chalk white background */
+  --color-brand-navy: #02263d; /* Deep Navy Blue */
+
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-serif: "Inter", system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+}
+
+body {
+  background-color: var(--color-brand-bg);
+  color: #334155; /* Elegant slate blue grey for body copy */
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-brand-navy); /* Headings automatically default to deep navy */
+}
+
+/* Headings typography scales with clamp */
+h1 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero-h1 {
+  font-size: clamp(2rem, 6vw, 4.25rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Enforce small text is no smaller than 14px (0.875rem) to avoid cramped, illegible mobile copy */
+small, .text-xs, .text-[11px], .text-[10px], .text-[9px] {
+  font-size: 0.875rem !important;
+}
+
+/* High readability forms with minimum standard dimensions for accessibility (44px) */
+input, select, textarea {
+  min-height: 44px;
+  font-size: 1rem !important;
+  line-height: 1.5;
+}
+
+/* Buttons must have touch-friendly height of 44px and minimum 1rem text on mobile */
+button, .btn {
+  min-height: 44px;
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Nav links / compact buttons should still have a 44px tap capability */
+header button, footer button {
+  min-height: 44px;
+}
+
+/* High contrast visible focus state for fully accessible navigation and navigation flow */
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--color-brand-gold);
+  outline-offset: 2px;
+}
+
+/* Section spacing of at least 3rem (4rem preferred) to avoid cramming layout components */
+section, .section-spacing {
+  margin-top: clamp(2rem, 5vw, 4.5rem) !important;
+  margin-bottom: clamp(2rem, 5vw, 4.5rem) !important;
+}
+
+/* Transitions & Microanimations for premium feels */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee linear infinite;
+}
+
+/* Ensure all global SVG icons have defined, scalable bounds */
+svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* Ensure external link and CTA icons conform to small dimensions */
+.external-link-icon,
+.link-icon,
+.cta-icon,
+.ticker-item svg {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+}
+
+/* News Ticker horizontal scroll styling */
+.broadband-news-ticker {
+  width: 100%;
+  overflow: hidden;
+  background: #14110e;
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.ticker-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 40px;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  animation: ticker-scroll 60s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.ticker-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .broadband-news-ticker {
+    font-size: 0.75rem;
+  }
+
+  .ticker-inner {
+    min-height: 36px;
+  }
+}
+

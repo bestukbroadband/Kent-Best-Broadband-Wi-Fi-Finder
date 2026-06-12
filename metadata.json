@@ -1,0 +1,8 @@
+{
+  "name": "Kent Broadband \u0026 WiFi Finder",
+  "description": "Broadband listing, comparison, and local availability check for rural Kent villages and towns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
