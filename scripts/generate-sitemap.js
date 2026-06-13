@@ -8,10 +8,12 @@ import { townPagesData } from '../src/data/townPages.ts';
 import { providerDirectoryData } from '../src/data/providerDirectory.ts';
 import siteConfig from '../src/config/siteConfig.js';
 
-const DOMAIN = siteConfig.regionSlug === "wiltshire"
-  ? "https://www.wiltshirebroadbandfinder.co.uk"
-  : "https://www.kentbroadbandfinder.co.uk";
-const defaultDate = "2026-06-10";
+const DOMAIN = siteConfig.baseUrl
+  ? siteConfig.baseUrl.replace(/\/$/, '')
+  : (siteConfig.regionSlug === "wiltshire"
+    ? "https://www.wiltshirebroadbandfinder.co.uk"
+    : "https://bestukbroadband.github.io/best-broadband-kent");
+const defaultDate = "2026-06-13";
 
 function formatDate(dateStr) {
   if (!dateStr) return defaultDate;
