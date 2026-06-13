@@ -12,7 +12,7 @@ const DOMAIN = siteConfig.baseUrl
   ? siteConfig.baseUrl.replace(/\/$/, '')
   : (siteConfig.regionSlug === "wiltshire"
     ? "https://www.wiltshirebroadbandfinder.co.uk"
-    : "https://bestukbroadband.github.io/best-broadband-kent");
+    : "https://bestukbroadband.github.io/Kent-Best-Broadband-Wi-Fi-Finder");
 const defaultDate = "2026-06-13";
 
 function formatDate(dateStr) {

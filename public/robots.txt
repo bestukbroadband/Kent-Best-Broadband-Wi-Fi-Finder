@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kentbroadbandfinder.co.uk/sitemap.xml
+Sitemap: https://bestukbroadband.github.io/Kent-Best-Broadband-Wi-Fi-Finder/sitemap.xml
