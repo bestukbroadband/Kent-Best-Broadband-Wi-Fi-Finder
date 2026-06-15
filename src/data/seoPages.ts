@@ -1060,6 +1060,82 @@ const rawSeoPagesData: Record<string, SeoPageData> = {
     editorNote: "Rural parished neighborhoods have witnessed massive fibre updates driven by local altnets.",
     ctaLabel: "Compare Providers in Your Postcode",
     ctaTarget: "home"
+  },
+  "how-we-track-offers": {
+    pageId: "how-we-track-offers",
+    slug: "how-we-track-offers",
+    pageTitle: "How We Track Broadband Offers & Deals | Kent Broadband Finder",
+    metaTitle: "How We Track Broadband Offers | Editor Guidelines",
+    metaDescription: "Learn about our editorial principles and how we track active broadband offers, symmetric altnet rates, and mainstream packages in Kent.",
+    canonicalUrl: "https://bestukbroadband.github.io/Kent-Best-Broadband-Wi-Fi-Finder/how-we-track-offers",
+    h1: "How We Track Broadband Offers",
+    heroIntro: "Our editorial guidelines and tracking policies for listed internet deals.",
+    supportingIntro: "We prioritize transparency, objective speed-to-value metrics, and contract terms. Here is how we track and evaluate broadband offers across regional network providers.",
+    primaryKeyword: "how we track broadband offers",
+    secondaryKeywords: ["broadband comparison methods", "independent rating guides", "affiliate disclaimer"],
+    postcodeTargets: [],
+    townTargets: [],
+    relatedPages: [],
+    internalLinks: [],
+    faqItems: [
+      {
+        question: "Are your broadband ranking scores independent?",
+        answer: "Yes. Our ranking system is fully independent. We evaluate providers based on starting price, download/upload speed ratio, contract length, and the presence of price locks."
+      },
+      {
+        question: "Do you receive commission for list placements?",
+        answer: "We focus on providing comprehensive and accurate coverage information. In some cases, provider links may include standard affiliate tracking, but this never alters our performance scoring or editorial checks."
+      }
+    ],
+    schemaType: "WebPage",
+    schemaJson: "{}",
+    ogTitle: "How We Track Broadband Offers & Deals",
+    ogDescription: "Learn how we independently track packages and ratings.",
+    ogImage: "",
+    twitterTitle: "Tracking Broadband Offers",
+    twitterDescription: "Learn how we independently track packages and ratings.",
+    twitterImage: "",
+    lastUpdated: "June 13, 2026",
+    reviewedBy: "Joshua Greedy",
+    publishedBy: "Cane Communications Limited"
+  },
+  "get-updates": {
+    pageId: "get-updates",
+    slug: "get-updates",
+    pageTitle: "Get Kent Broadband Updates | Local Connectivity News",
+    metaTitle: "Get Kent Broadband Updates | Newsletter Signup",
+    metaDescription: "Sign up for occasional local broadband updates, rural coverage rollouts, and newly tracked alternative provider networks across Kent.",
+    canonicalUrl: "https://bestukbroadband.github.io/Kent-Best-Broadband-Wi-Fi-Finder/get-updates",
+    h1: "Get Kent Broadband Updates",
+    heroIntro: "Stay informed about local full fibre expansions and newly listed provider checkers.",
+    supportingIntro: "Sign up for occasional notifications about rural connectivity developments, alternative networks, and tracked offers in your Kent district. We do not sell broadband directly.",
+    primaryKeyword: "get Kent broadband updates",
+    secondaryKeywords: ["rural broadband updates", "fibre rollout alerts", "Kent broadband newsletter"],
+    postcodeTargets: [],
+    townTargets: [],
+    relatedPages: [],
+    internalLinks: [],
+    faqItems: [
+      {
+        question: "How often do you send updates?",
+        answer: "We send updates occasionally, typically only when major new broadband networks or fiber projects are confirmed in Kent towns and villages."
+      },
+      {
+        question: "Can I request address level checks here?",
+        answer: "No. This form is only for newsletter signups and site updates. We are an independent guide and do not directly check individual address lines on behalf of users; always use direct provider checkers."
+      }
+    ],
+    schemaType: "WebPage",
+    schemaJson: "{}",
+    ogTitle: "Get Kent Broadband Updates",
+    ogDescription: "Sign up for occasional local broadband updates and network news.",
+    ogImage: "",
+    twitterTitle: "Get Kent Broadband Updates",
+    twitterDescription: "Sign up for occasional local broadband updates and network news.",
+    twitterImage: "",
+    lastUpdated: "June 13, 2026",
+    reviewedBy: "Joshua Greedy",
+    publishedBy: "Cane Communications Limited"
   }
 };
 

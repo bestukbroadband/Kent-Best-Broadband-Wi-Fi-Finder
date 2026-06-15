@@ -92,7 +92,9 @@ export const kentPostcodesData: PostcodeArea[] = kentRawAreas.map((item) => {
     postcodePrefix: item.prefix,
     areaName: item.name,
     primaryTown: item.town,
+    nearbyTowns: [item.town],
     nearbyAreas: [item.town],
+    areaType: item.prefix.startsWith("CT") || item.prefix.startsWith("DA") || item.prefix.startsWith("ME") ? "urban" : "semi-rural",
     county: "Kent",
     region: "South East",
     slug,
@@ -101,6 +103,7 @@ export const kentPostcodesData: PostcodeArea[] = kentRawAreas.map((item) => {
     postcodeExamples: [`${item.prefix} 1AA`, `${item.prefix} 2AA`],
     providerIds: ["bt", "sky", "talktalk", "virgin", "vodafone", "ee", "starlink"],
     seoTitle: `Best Broadband in ${item.name} | ${item.prefix} Listed Deals`,
+    seoDescription: `Compare listed broadband packages in ${item.name} (${item.prefix}). Find provider check buttons and tracked offers for this area. Check address availability.`,
     metaDescription: `Compare listed broadband packages in ${item.name} (${item.prefix}). Find provider check buttons and tracked offers for this area. Check address availability.`,
     h1: `Best Listed Broadband Deals in ${item.name} (${item.prefix})`,
     faqs: [
@@ -110,7 +113,7 @@ export const kentPostcodesData: PostcodeArea[] = kentRawAreas.map((item) => {
       }
     ],
     nearbyPostcodes: [],
-    lastUpdated: "June 12, 2026",
+    lastUpdated: "June 13, 2026",
     isCoreKentArea,
     providerSearchEnabled
   } as any;

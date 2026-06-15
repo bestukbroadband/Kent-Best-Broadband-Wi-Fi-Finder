@@ -6,7 +6,7 @@
 /**
  * Normalises a postcode input by trimming whitespace and converting to uppercase.
  */
-export function normalisePostcodeInput(input: string): string {
+export function normalisePostcodeInput(input) {
   if (!input) return "";
   return input.trim().toUpperCase();
 }
@@ -15,7 +15,7 @@ export function normalisePostcodeInput(input: string): string {
  * Extracts the outward code from any UK postcode input.
  * e.g. "CT10 1AA" -> "CT10", "CT1 1AA" -> "CT1", "CT10" -> "CT10"
  */
-export function extractOutwardCode(input: string): string {
+export function extractOutwardCode(input) {
   if (!input) return "";
   const normalized = normalisePostcodeInput(input);
   
@@ -51,7 +51,7 @@ export function extractOutwardCode(input: string): string {
  * Finds a postcode area from a list of postcode areas.
  * Employs exact matching first, and sorts prefixes longest first before fallback matching.
  */
-export function findPostcodeArea(input: string, postcodeAreas: any[]): any {
+export function findPostcodeArea(input, postcodeAreas) {
   if (!input || !postcodeAreas || !Array.isArray(postcodeAreas)) return null;
   const outcode = extractOutwardCode(input);
   if (!outcode) return null;
@@ -72,9 +72,13 @@ export function findPostcodeArea(input: string, postcodeAreas: any[]): any {
   for (const area of sortedAreas) {
     const prefix = area.postcodePrefix.toUpperCase();
     if (cleanInput.startsWith(prefix)) {
+      // Safeguard: Make sure word-boundary or digit-boundary holds
+      // e.g., if prefix is CT1 and input is CT10, cleanInput starts with CT1 but the remainder has digits, making it CT10 instead of CT1.
+      // So if the match is partial, the next character in input shouldn't be a digit.
       const remainder = cleanInput.slice(prefix.length);
       if (/^\d/.test(remainder) && !/^\d/.test(prefix.slice(-1))) {
-        continue; // mismatch e.g. CT10 matching CT1
+        // This is a mismatch e.g. matching CT1 with CT10 input. Skip.
+        continue;
       }
       return area;
     }
@@ -84,27 +88,10 @@ export function findPostcodeArea(input: string, postcodeAreas: any[]): any {
 }
 
 /**
- * Checks whether an outward code starts with a Kent area prefix: CT, TN, ME, DA, BR followed by digits.
+ * Checks whether the input is a core Kent postcode.
  */
-export function isKentPostcode(outwardCode: string): boolean {
-  if (!outwardCode) return false;
-  const outcode = extractOutwardCode(outwardCode);
+export function isCoreKentPostcode(input) {
+  if (!input) return false;
+  const outcode = extractOutwardCode(input);
   return /^(CT|TN|ME|DA|BR)[0-9]+/i.test(outcode);
 }
-
-/**
- * Checks whether an outward code starts with a Kent area prefix.
- */
-export function isCoreKentPostcode(input: string): boolean {
-  return isKentPostcode(input);
-}
-
-/**
- * Checks whether an outward code matches a Wiltshire area prefix: SN, SP, BA, RG, GL.
- */
-export function isWiltshirePostcode(outwardCode: string): boolean {
-  if (!outwardCode) return false;
-  const outcode = extractOutwardCode(outwardCode);
-  return /^(SN|SP|BA|RG|GL)[0-9]+/i.test(outcode);
-}
-

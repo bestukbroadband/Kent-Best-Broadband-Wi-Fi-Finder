@@ -733,13 +733,13 @@ export default function App() {
                 {/* VISUAL INFRASTRUCTURE CATEGORIES SELECTIONS */}
                 <section className="space-y-3">
                   <div className="space-y-1 text-center md:text-left">
-                    <span className="text-[11px] font-extrabold text-brand-gold uppercase tracking-widest leading-none">
+                    <span className="text-[11px] font-extrabold text-[#107c91] uppercase tracking-widest leading-none">
                       Infrastructure Options
                     </span>
-                    <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
+                    <h2 className="text-xl md:text-2xl font-black text-[#02263d] tracking-tight">
                       Compare {siteConfig.regionName} Deployment Classes
                     </h2>
-                    <p className="text-xs text-slate-300 font-semibold max-w-xl">
+                    <p className="text-xs text-slate-600 font-semibold max-w-xl">
                       Select a specific connectivity medium to filter our objective local guides instantly.
                     </p>
                   </div>
@@ -778,7 +778,7 @@ export default function App() {
                   </div>
 
                   {/* ACTIVE PROVIDER DECK */}
-                  <div className="lg:col-span-2 space-y-6">
+                  <div className="lg:col-span-2 space-y-6 text-left">
                     {selectedCategoryId && (
                       <AdvertBanner 
                         location="provider-category-sponsor" 
@@ -786,12 +786,12 @@ export default function App() {
                         className="w-full" 
                       />
                     )}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-[#16130f] p-4 border-2 border-stone-850 rounded-xl shadow-lg">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 bg-white p-4 border border-slate-200 rounded-xl shadow-xs">
                       <div>
-                        <h2 className="text-base font-black text-white font-sans tracking-tight leading-none">
+                        <h2 className="text-base font-black text-[#02263d] font-sans tracking-tight leading-none text-left">
                           Listed Providers serving {siteConfig.regionName} Parishes
                         </h2>
-                        <span className="text-[11px] text-slate-350 font-bold block mt-1">
+                        <span className="text-[11px] text-slate-500 font-bold block mt-1 text-left">
                           Refined results based on your selected parameters below.
                         </span>
                       </div>
@@ -799,21 +799,23 @@ export default function App() {
                       <div className="flex gap-1">
                         <button
                           onClick={() => setFilters((prev) => ({ ...prev, selectedTypes: [] }))}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-bold leading-none cursor-pointer ${
                             filters.selectedTypes.length === 0
-                              ? "bg-brand-gold text-slate-950 font-black shadow-md border border-brand-gold/30"
-                              : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                              ? "bg-[#107c91] text-white font-black shadow-xs"
+                              : "bg-slate-100 text-slate-705 hover:bg-slate-200"
                           }`}
+                          style={{ minHeight: "32px" }}
                         >
                           All Networks
                         </button>
                         <button
                           onClick={() => setFilters((prev) => ({ ...prev, selectedTypes: ["Alternative network providers"] }))}
-                          className={`px-3 py-1.5 rounded-lg text-xs font-bold ${
+                          className={`px-3 py-1.5 rounded-lg text-xs font-bold leading-none cursor-pointer ${
                             filters.selectedTypes.includes("Alternative network providers")
-                              ? "bg-brand-gold text-slate-950 font-black shadow-md border border-brand-gold/30"
-                              : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                              ? "bg-[#107c91] text-white font-black shadow-xs"
+                              : "bg-slate-100 text-[#02263d] hover:bg-slate-200"
                           }`}
+                          style={{ minHeight: "32px" }}
                         >
                           Altnets
                         </button>
@@ -823,15 +825,15 @@ export default function App() {
                     {/* DYNAMIC SHIELD - SPONSORED SPOTLIGHT CARDS FIRST */}
                     {filteredProviders.length > 0 && filters.searchQuery === "" && (
                       <div className="space-y-4">
-                        <span className="text-[10px] uppercase font-black text-slate-300 block tracking-widest mb-1">
+                        <span className="text-[10px] uppercase font-black text-[#107c91] block tracking-widest mb-1 text-left">
                           Featured rural specialists
                         </span>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 md:gap-5 animate-fadeIn">
                           {providersData.filter((p) => p.isSponsored).slice(0, 2).map((spon) => (
                             <SponsoredProviderCard
-                              key={spon.id}
-                              provider={spon}
-                              onEnquire={handleEnquireTrigger}
+                               key={spon.id}
+                               provider={spon}
+                               onEnquire={handleEnquireTrigger}
                             />
                           ))}
                         </div>
@@ -840,7 +842,7 @@ export default function App() {
 
                     {/* REGULAR DECK LISTINGS */}
                     <div className="space-y-5">
-                      <span className="text-[10px] uppercase font-black text-slate-300 block tracking-widest">
+                      <span className="text-[10px] uppercase font-black text-[#107c91] block tracking-widest text-left">
                         Standard Local Matches
                       </span>
 
@@ -855,18 +857,18 @@ export default function App() {
                           ))}
                         </div>
                       ) : (
-                        <div className="py-14 text-center bg-[#16130f] border-2 border-stone-850 rounded-2xl space-y-3">
-                          <Sliders className="h-10 w-10 text-brand-gold mx-auto" />
-                          <h4 className="text-sm font-bold text-white">No matching providers found</h4>
-                          <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                            No provider fits those combined speed, price, and price freeze settings. Try resting contract duration slider or widening maximum budget limits.
+                        <div className="py-14 text-center bg-white border border-slate-200 rounded-2xl space-y-3 shadow-xs">
+                          <Sliders className="h-10 w-10 text-[#107c91] mx-auto" />
+                          <h4 className="text-sm font-bold text-[#02263d] font-sans">No matching providers found</h4>
+                          <p className="text-xs text-slate-600 max-w-sm mx-auto leading-relaxed font-semibold">
+                            No provider fits those combined speed, price, and price freeze settings. Try resetting contract duration slider or widening maximum budget limits.
                           </p>
                           <button
                             onClick={() => {
                               setFilters(initialFilterState);
                               setSelectedCategoryId(null);
                             }}
-                            className="text-xs font-bold text-brand-gold underline hover:text-white transition-colors"
+                            className="text-xs font-black text-[#107c91] underline hover:text-cyan-800 transition-colors cursor-pointer"
                           >
                             Reset filters and check all
                           </button>
@@ -875,7 +877,7 @@ export default function App() {
                     </div>
 
                     {/* BEST LISTED DEALS PRE-RENDER WRAPPED */}
-                    <div className="pt-6 border-t border-slate-108">
+                    <div className="pt-6 border-t border-slate-200">
                       <BestDealsSection onEnquire={handleEnquireTrigger} limit={3} />
                     </div>
 
@@ -902,17 +904,41 @@ export default function App() {
                 {/* WILTSHIRE TOWN MATRIX VIEWS */}
                 <TownSearch onTownSelect={handleTownPageSelect} />
 
+                {/* HOMEPAGE COMPREHENSIVE SEO CONTENT SECTION (Part 8) */}
+                <section className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 space-y-6 text-left shadow-xs mt-4">
+                  <div className="space-y-2">
+                    <h2 className="text-lg md:text-xl font-black text-[#02263d] tracking-tight font-sans">
+                      Compare broadband providers to check across {siteConfig.regionName}
+                    </h2>
+                    <p className="text-xs text-slate-600 leading-relaxed font-semibold">
+                      {siteConfig.regionSlug === "kent" 
+                        ? "Kent Broadband Finder helps you check listed broadband and WiFi options across towns, villages and rural postcode areas. We group national providers, regional broadband networks, full fibre options, mobile broadband and satellite choices so you can quickly open the right provider checkers."
+                        : "Wiltshire Broadband Finder helps you check listed broadband and WiFi options across parished towns, villages and rural postcode areas. We group national providers, regional broadband networks, full fibre options, mobile broadband and satellite choices so you can quickly open the right provider checkers."
+                      }
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 border-t border-slate-100 pt-4">
+                    <h3 className="text-sm font-black text-[#02263d] tracking-tight font-sans text-left">
+                      Why postcode checks matter
+                    </h3>
+                    <p className="text-xs text-slate-650 leading-relaxed font-semibold text-left">
+                      Broadband coverage can change from one street to the next. A provider may serve one part of a town but not another, so final availability must always be checked using the provider’s own address checker.
+                    </p>
+                  </div>
+                </section>
+
                 {/* DYNAMIC LOCAL DEVELOPMENT ARTICLES */}
                 <section className="space-y-4" id="rural-broadband-news">
-                  <div className="space-y-1">
-                    <span className="text-[11px] font-extrabold text-brand-gold uppercase tracking-widest block leading-none mb-1 font-sans">
+                  <div className="space-y-1 text-left">
+                    <span className="text-[11px] font-extrabold text-[#107c91] uppercase tracking-widest block leading-none mb-1 font-sans">
                       {siteConfig.regionName} Updates
                     </span>
-                    <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
+                    <h2 className="text-xl md:text-2xl font-black text-[#02263d] tracking-tight">
                       Local Digital Infrastructure News
                     </h2>
-                    <p className="text-xs text-slate-300 font-semibold max-w-xl leading-relaxed">
-                      Read about BDUK Project Gigabit rollouts, altnet mergers, and rural fibre voucher statuses across our counties.
+                    <p className="text-xs text-slate-600 font-semibold max-w-xl leading-relaxed">
+                      Read about BDUK Project Gigabit rollouts, altnet mergers, and rural fibre coverage updates across our parished regions.
                     </p>
                   </div>
 

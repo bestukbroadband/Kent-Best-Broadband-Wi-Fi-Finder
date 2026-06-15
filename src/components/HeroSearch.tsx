@@ -4,8 +4,7 @@
  */
 
 import React, { useState } from "react";
-import { Search, Sparkles, ShieldAlert, MapPin, ArrowRight, Star } from "lucide-react";
-import { HeroVideoBackground } from "./HeroVideoBackground";
+import { Search, MapPin, ShieldAlert, Sparkles } from "lucide-react";
 import siteConfig from "../config/siteConfig";
 
 interface HeroSearchProps {
@@ -14,18 +13,30 @@ interface HeroSearchProps {
   className?: string;
 }
 
-export function HeroSearch({ onSearchSubmit, onListProviderClick, className = "" }: HeroSearchProps) {
+export function HeroSearch({ onSearchSubmit, className = "" }: HeroSearchProps) {
   const [query, setQuery] = useState("");
 
   const isKent = siteConfig.regionSlug === "kent";
-  const intelligenceHubLabel = isKent ? "Kent Broadband Intelligence Hub" : "Wiltshire Broadband Intelligence Hub";
-  const placeholderText = isKent ? "Enter TN1, CT1, Canterbury, Goudhurst village..." : "Enter SN10, BA14, Devizes, Worton village...";
+
+  // Wording as strictly requested by the user
+  const mainTitle = isKent 
+    ? "Best broadband in Kent" 
+    : "Best broadband in Wiltshire";
+
+  const subtitle = isKent
+    ? "Check listed broadband, WiFi and internet provider options across Kent towns, villages and postcode areas. Enter your postcode area to see providers and availability checkers to try."
+    : "Check listed broadband, WiFi and internet provider options across Wiltshire towns, villages and postcode areas. Enter your postcode area to see providers and availability checkers to try.";
+
+  const trustNote = "Availability varies by exact address. Always confirm speeds, prices and contract terms with the provider before ordering.";
+
+  const placeholderText = isKent 
+    ? "Enter postcode or area, e.g. ME19, CT10, DA10, TN13" 
+    : "Enter postcode or area, e.g. SN10, SP4, BA15, SN1";
+
+  // Highly relevant Kent chips (and Wiltshire fallback)
   const quickSearches = isKent 
-    ? ["Goudhurst", "Canterbury", "Tunbridge Wells", "Paddock Wood", "Snodland", "Dartford", "TN1", "CT1"]
-    : ["Worton", "Devizes", "Calne", "Pewsey", "Marlborough", "Lacock", "SN10", "BA14"];
-  const coverageAreasText = isKent
-    ? "Covering Kent villages, market towns and border areas across TN, CT, ME and DA postcodes."
-    : "Covering Wiltshire villages, market towns and border areas across SN, SP, BA, GL and RG postcodes.";
+    ? ["ME19", "CT10", "DA10", "TN13", "Maidstone", "Kings Hill", "Canterbury", "Sevenoaks"]
+    : ["SN10", "SP4", "BA15", "SN1", "Devizes", "Salisbury", "Chippenham", "Marlborough"];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,142 +48,107 @@ export function HeroSearch({ onSearchSubmit, onListProviderClick, className = ""
     onSearchSubmit(area);
   };
 
-  const handleScrollToWeeklyOffers = () => {
-    const section = document.getElementById("best-deals-section");
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   return (
     <div 
-      className={`relative rounded-3xl p-6 md:p-12 overflow-hidden shadow-2xl border-2 border-slate-800 bg-[#0c101d] text-white flex flex-col justify-between min-h-[480px] md:min-h-[520px] ${className}`} 
+      className={`relative rounded-3xl p-6 md:p-10 border-2 border-slate-200 bg-white shadow-xl text-slate-800 flex flex-col justify-between ${className}`} 
       id="hero-comparison-banner"
     >
-      {/* 1. Muted Looping Video Background with mobile & motion fallbacks */}
-      <HeroVideoBackground 
-        videoUrl="/videos/wiltshire-broadband-hero.mp4"
-        posterImage="/images/wiltshire-broadband-poster.jpg"
-        overlayOpacity={0.72}
-      />
-
-      {/* 2. Visual Content Layer */}
-      <div className="relative z-10 space-y-8 max-w-4xl">
+      <div className="relative z-10 space-y-6 max-w-4xl">
         
-        {/* Dynamic Category Badging */}
+        {/* Dynamic Category Badging - Clean & Simple */}
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold rounded-full text-[10.5px] font-extrabold tracking-widest uppercase shadow-xs">
-            <Sparkles className="h-3 w-3 text-brand-gold animate-pulse" />
-            {intelligenceHubLabel}
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-brand-green-light border border-slate-200 text-brand-green rounded-full text-xs font-semibold">
+            <Sparkles className="h-3.5 w-3.5 text-brand-green" />
+            Independent Advisory Guide
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-slate-800/80 border border-slate-705 text-slate-350 rounded-full text-[10.5px] font-bold tracking-wider">
-            Independent Advisory Platform
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 border border-slate-200 text-slate-600 rounded-full text-xs font-medium">
+            No direct sales — we list and link to checkers
           </span>
         </div>
 
         {/* Hero Headings */}
-        <div className="space-y-4">
-          <h1 className="hero-h1 text-white max-w-3xl">
-            Find local broadband options for <br className="hidden md:inline" />
-            <span className="bg-gradient-to-r from-brand-gold via-amber-300 to-yellow-200 bg-clip-text text-transparent">
-              {siteConfig.regionName}
-            </span> villages and towns
+        <div className="space-y-3">
+          <h1 className="text-brand-navy font-black text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight">
+            {mainTitle}
           </h1>
           
-          <p className="text-base text-slate-300 leading-relaxed font-semibold max-w-4xl text-pretty font-sans">
-            Compare full fibre networks, local altnets, and national providers across {siteConfig.regionName}. Search your postcode, town, or village to see listed deals, editor reviews, and direct address-level check options.
+          <p className="text-slate-700 text-base md:text-lg leading-relaxed max-w-3xl">
+            {subtitle}
+          </p>
+
+          <p className="text-slate-500 text-sm italic font-medium max-w-3xl border-l-4 border-amber-500 pl-3 py-0.5">
+            {trustNote}
           </p>
         </div>
 
-        {/* Central Search Card Layout */}
-        <div className="space-y-4 max-w-3xl bg-slate-900/40 p-1 md:p-2 rounded-2xl border border-slate-800/80 backdrop-blur-md">
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2.5">
+        {/* Postcode Search Container - Main Visual Focus */}
+        <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 md:p-6 space-y-4 shadow-sm">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
+              <label htmlFor="hero-search-input" className="sr-only">
+                Enter your postcode or area
+              </label>
               <input
                 id="hero-search-input"
                 type="text"
                 placeholder={placeholderText}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="w-full px-4 py-4 pl-11 rounded-xl text-base bg-slate-950/80 border-2 border-slate-700 hover:border-slate-500 focus:border-brand-gold/90 text-white focus:ring-0 placeholder:text-slate-400 focus:outline-hidden transition-all font-sans font-bold"
+                className="w-full px-4 py-4 pl-12 rounded-xl text-base text-slate-900 bg-white border border-slate-300 hover:border-slate-400 focus:border-brand-blue focus:outline-none transition-all font-sans font-medium shadow-xs"
+                style={{ minHeight: "48px" }}
               />
-              <Search className="absolute left-4 top-4 h-4 w-4 text-brand-gold" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
-              {/* Primary CTA */}
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 py-4 bg-brand-gold hover:bg-brand-gold-hover text-slate-950 text-base font-black rounded-xl transition-all shadow-lg hover:shadow-brand-gold/15 flex items-center justify-center gap-1.5 cursor-pointer select-none leading-none group"
-              >
-                <span>Check my postcode</span>
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </button>
-
-              {/* Secondary CTA */}
-              <button
-                type="button"
-                onClick={handleScrollToWeeklyOffers}
-                className="w-full sm:w-auto px-5 py-4 bg-slate-805 hover:bg-slate-800 border-2 border-slate-700 text-slate-200 text-xs font-black rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5"
-              >
-                <Star className="h-3.5 w-3.5 text-brand-gold shrink-0 fill-brand-gold/20" />
-                <span>View weekly offer</span>
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="px-8 py-4 bg-[#02263d] hover:bg-[#085175] text-white text-base font-black rounded-xl transition-all shadow-md flex items-center justify-center gap-2 select-none group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
+              style={{ minHeight: "48px" }}
+            >
+              <span>Check my area</span>
+            </button>
           </form>
 
           {/* DYNAMIC POSTCODE HELPER & QUICK SELECTS */}
-          <div className="flex flex-wrap items-center gap-2 px-2 pt-1">
-            <span className="text-[10px] text-slate-400 font-extrabold uppercase tracking-widest flex items-center gap-1">
-              <MapPin className="h-3 w-3 text-brand-gold" />
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <span className="text-xs text-slate-600 font-extrabold uppercase tracking-wide flex items-center gap-1 shrink-0">
+              <MapPin className="h-4 w-4 text-brand-green" />
               Quick Searches:
             </span>
-            {quickSearches.map((area) => (
-              <button
-                key={area}
-                type="button"
-                onClick={() => handleQuickSelect(area)}
-                className="px-2.5 py-1 text-[11px] font-black bg-slate-950/60 hover:bg-brand-gold/15 border border-slate-800 hover:border-brand-gold text-slate-300 hover:text-brand-gold rounded-lg transition-all cursor-pointer"
-              >
-                {area}
-              </button>
-            ))}
+            <div className="flex flex-wrap gap-1.5">
+              {quickSearches.map((area) => (
+                <button
+                  key={area}
+                  type="button"
+                  onClick={() => handleQuickSelect(area)}
+                  className="px-3 py-1.5 text-xs font-semibold bg-white hover:bg-brand-green-light border border-slate-200 hover:border-brand-green text-slate-700 hover:text-brand-green rounded-lg transition-all cursor-pointer"
+                  style={{ minHeight: "36px" }}
+                >
+                  {area}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Coverage & Compliance Footnotes Grid */}
-        <div className="pt-6 border-t border-slate-805/60 grid grid-cols-1 md:grid-cols-2 gap-5 text-xs text-slate-300 leading-relaxed font-sans">
-          
-          {/* A. Local Coverage Line */}
-          <div className="flex gap-3 items-start">
-            <div className="bg-brand-gold/10 text-brand-gold p-2.5 rounded-xl border border-brand-gold/20 shrink-0" aria-hidden="true">
-              <MapPin className="h-4.5 w-4.5" />
-            </div>
-            <div className="space-y-1">
-              <span className="font-extrabold text-white block uppercase tracking-wider text-[11px] font-sans">
-                Broadband Coverage Areas:
-              </span>
-              <p className="text-slate-350">
-                {coverageAreasText}
-              </p>
-            </div>
+        {/* Small Credibility Badgers */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-100 text-xs text-slate-600">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-brand-green" />
+            <span>Independent Information Guide</span>
           </div>
-
-          {/* B. Trust Disclaimer */}
-          <div className="flex gap-3 items-start">
-            <div className="bg-slate-800/60 text-slate-400 p-2.5 rounded-xl border border-slate-700 shrink-0" aria-hidden="true">
-              <ShieldAlert className="h-4.5 w-4.5" />
-            </div>
-            <div className="space-y-1">
-              <span className="font-extrabold text-white block uppercase tracking-wider text-[11px] font-sans">
-                Accuracy &amp; Verified Checks:
-              </span>
-              <p className="text-slate-350">
-                Prices, speeds and availability can vary by exact address. We show listed offers and local guidance, then help you request a proper address level check.
-              </p>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-brand-navy" />
+            <span>Postcode-level lists</span>
           </div>
-
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-500" />
+            <span>Provider checkers required</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span>We do not sell broadband directly</span>
+          </div>
         </div>
 
       </div>

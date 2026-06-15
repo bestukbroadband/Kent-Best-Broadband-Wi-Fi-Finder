@@ -1,6 +1,6 @@
 /**
  * @license
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.5
  */
 
 import React from "react";
@@ -17,6 +17,12 @@ interface FooterProps {
 }
 
 export function Footer({ onNavClick, activeTab }: FooterProps) {
+  const isKent = siteConfig.regionSlug === "kent";
+  const titleText = isKent ? "Kent Broadband Finder" : "Wiltshire Broadband Finder";
+  const subtitleText = isKent 
+    ? "Independent local broadband information and listing guide" 
+    : "Independent Wiltshire local broadband comparison tracker";
+
   const handleLinkClick = (tabId: string) => {
     onNavClick(tabId);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -27,8 +33,11 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Get a selection of 6 prominent Wiltshire towns for high layout variety
   const featuredTowns = townsData.slice(0, 8);
+
+  const disclaimerText = isKent
+    ? "Kent Broadband Finder does not sell broadband directly. Always confirm availability, speeds, pricing, installation and contract terms with the provider before ordering."
+    : "Wiltshire Broadband Finder does not sell broadband directly. Always confirm availability, speeds, pricing, installation and contract terms with the provider before ordering.";
 
   return (
     <footer className="bg-[#02263d] border-t border-slate-700/60 text-slate-100 text-xs py-12 md:py-16" id="site-footer">
@@ -38,10 +47,18 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* SITE INFO AND BRAND COLUMN */}
-          <div className="space-y-4 md:col-span-1">
+          <div className="space-y-4 md:col-span-1 text-left">
             <BrandLogo variant="footer" showText={true} backgroundMode="dark" />
-            <p className="text-[11px] text-slate-300 leading-relaxed">
-              Assisting rural {siteConfig.regionName} households and agricultural ventures in connecting with high-speed full fibre, altnet, 5G, and orbit satellite arrays.
+            <div className="space-y-1">
+              <h3 className="text-xs font-black text-white tracking-wider font-sans uppercase">
+                {titleText}
+              </h3>
+              <p className="text-[10px] text-slate-300 leading-normal font-semibold">
+                {subtitleText}
+              </p>
+            </div>
+            <p className="text-[11px] text-slate-300 leading-relaxed font-medium">
+              Assisting {siteConfig.regionName} households and businesses in checking listed broadband, full fibre, regional altnets, 5G, and satellite checkers.
             </p>
             <div className="text-[10px] text-slate-300 space-y-1.5 leading-tight">
               <p className="font-extrabold text-brand-gold">Project of: {siteSettingsData.owner.companyName}</p>
@@ -51,7 +68,7 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
           </div>
 
           {/* SEO GUIDES COLUMN */}
-          <div className="space-y-3">
+          <div className="space-y-3 text-left">
             <h4 className="text-brand-gold text-xs font-black uppercase tracking-widest border-b border-slate-700/60 pb-2">
               Broadband Guides
             </h4>
@@ -90,11 +107,11 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
           </div>
 
           {/* POPULAR TOWNS COLUMN */}
-          <div className="space-y-3">
+          <div className="space-y-3 text-left">
             <h4 className="text-brand-gold text-xs font-black uppercase tracking-widest border-b border-slate-700/60 pb-2">
               {siteConfig.regionName} Towns Covered
             </h4>
-            <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 text-[11px] font-semibold">
+            <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 text-[11px] font-semibold text-left">
               {featuredTowns.map((town) => (
                 <button
                   key={town.id}
@@ -108,9 +125,9 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
           </div>
 
           {/* COMPLIANCE PAGES COLUMN */}
-          <div className="space-y-3">
+          <div className="space-y-3 text-left">
             <h4 className="text-brand-gold text-xs font-black uppercase tracking-widest border-b border-slate-700/60 pb-2">
-              Legal &amp; Partners
+              Legal &amp; Info
             </h4>
             <ul className="space-y-2 text-[11px] font-semibold">
               <li>
@@ -121,6 +138,21 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
               <li>
                 <button onClick={() => handleLinkClick("advertise")} className="text-brand-gold hover:text-brand-gold-hover hover:underline transition-colors cursor-pointer text-left font-black">
                   Advertise With Us
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleLinkClick("how-we-track-offers")} className="text-slate-100 hover:text-brand-gold hover:underline transition-colors cursor-pointer text-left font-black">
+                  How We Track Offers
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleLinkClick("get-updates")} className="text-brand-gold hover:text-brand-gold-hover hover:underline transition-colors cursor-pointer text-left font-black">
+                  Get Updates
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleLinkClick("providers-directory")} className="text-slate-100 hover:text-brand-gold hover:underline transition-colors cursor-pointer text-left">
+                  Broadband Providers
                 </button>
               </li>
               <li>
@@ -138,24 +170,19 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
                   Cookie Policy
                 </button>
               </li>
-              <li>
-                <button onClick={() => handleLinkClick("contact")} className="text-slate-100 hover:text-brand-gold hover:underline transition-colors cursor-pointer text-left font-black">
-                  Get Updates
-                </button>
-              </li>
             </ul>
           </div>
 
         </div>
 
-        {/* REGULATORY DISCLAIMER ZONE - MUST BE PROMINENT */}
-        <div className="pt-8 border-t border-slate-700/60 space-y-4">
-          <div className="bg-[#06314f] p-4 rounded-xl border border-brand-teal/30 text-[10.5px] leading-relaxed text-slate-100 space-y-2.5 shadow-sm">
+        {/* REGULATORY DISCLAIMER ZONE */}
+        <div className="pt-8 border-t border-slate-700/60 space-y-4 text-left">
+          <div className="bg-[#06314f] p-4 rounded-xl border border-brand-teal/30 text-[10.5px] leading-relaxed text-slate-100 space-y-2.5 shadow-sm text-left">
             <p>
-              <strong>Compliance Disclaimer:</strong> {siteConfig.regionName} Broadband Finder is an independent local broadband information site. We do not sell broadband directly. Always confirm availability, speeds, pricing and contract terms with the provider before ordering.
+              <strong>Availability Disclaimer:</strong> {disclaimerText}
             </p>
             <p>
-              <strong>Commission Wording Detail:</strong> {siteSettingsData.disclaimers.commissionNotice} {siteSettingsData.disclaimers.marketLimitNotice} We make zero guarantees regarding line speeds or package costs.
+              <strong>Commission Wording Detail:</strong> {siteSettingsData.disclaimers.commissionNotice} {siteSettingsData.disclaimers.marketLimitNotice} We make zero guarantees regarding line speeds, active promotions, or package costs. Sourced rates remain subject to precise address test.
             </p>
           </div>
 

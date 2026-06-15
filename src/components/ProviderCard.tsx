@@ -68,9 +68,19 @@ export function ProviderCard({ provider, onEnquire, className = "" }: ProviderCa
             </div>
           </div>
 
-          <div className="text-right">
+          <div className="text-right flex flex-col items-end gap-1.5">
             <span className="inline-block text-[10px] font-black text-brand-green bg-brand-gold-light px-2 py-0.5 rounded border-2 border-brand-gold">
               {provider.bestFor}
+            </span>
+            <span className="inline-block text-[10px] font-bold text-slate-700 bg-slate-100 rounded-full px-2 py-0.5 border border-slate-250">
+              {(() => {
+                const status = provider.availabilityStatus || "Address check required";
+                const lower = status.toLowerCase();
+                if (lower.includes("guaranteed") || lower.includes("available now") || lower === "available" || lower.includes("exclusive") || lower.includes("confirmed")) {
+                  return "Address check required";
+                }
+                return status;
+              })()}
             </span>
           </div>
         </div>
