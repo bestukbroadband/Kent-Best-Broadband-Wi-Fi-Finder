@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <!-- Card Inner Clipping Path -->
+    <clipPath id="card-clip">
+      <rect x="52" y="52" width="896" height="896" rx="192" fill="#ffffff" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer background (white canvas) -->
+  <rect width="1000" height="1000" fill="#ffffff" />
+
+  <!-- Outer Card Frame (White card with subtle soft card border/shadow look) -->
+  <rect x="50" y="50" width="900" height="900" rx="196" fill="#ffffff" stroke="#f1f3f5" stroke-width="4" />
+
+  <!-- Masked Illustration Content -->
+  <g clip-path="url(#card-clip)">
+    <!-- Base Sky / Background (white) -->
+    <rect x="52" y="52" width="896" height="896" fill="#ffffff" />
+
+    <!-- Dark Blue Cliff Backdrop Block -->
+    <!-- Large sloping dark shape starting high on the left and descending -->
+    <path d="M 52 380 L 413 451 L 565 506 L 682 553 L 746 590 L 746 948 L 52 948 Z" fill="#034769" />
+
+    <!-- Deep Blue Ocean (right side) -->
+    <path d="M 450 670 C 530 650, 700 648, 948 648 L 948 948 L 450 948 Z" fill="#016391" />
+    <!-- Bright/Medium Ocean Wave Highlight -->
+    <path d="M 526 663 C 585 654, 760 655, 948 650 L 948 850 L 526 850 Z" fill="#007eae" opacity="0.85" />
+
+    <!-- Winding Pathway (White) snaking from center-bottom into the cliff valley -->
+    <!-- Pathway starts around x=325 to x=560 at the bottom seam, sweeps left then curves right -->
+    <path d="M 324 948 C 390 890, 480 840, 480 770 C 480 710, 430 690, 480 668 L 492 668 C 450 695, 520 720, 520 770 C 520 840, 420 890, 560 948 Z" fill="#ffffff" />
+
+    <!-- Individual White Chalk Cliffs of Dover (layered from back-right to front-left) -->
+    <!-- Cliff 4 (Back right, smaller) -->
+    <path d="M 684 590 L 746 590 L 746 652 L 712 650 L 684 624 Z" fill="#ffffff" stroke="#023b58" stroke-width="2" />
+    <path d="M 684 590 L 696 612 L 684 624" fill="none" stroke="#e9ecef" stroke-width="2" />
+
+    <!-- Cliff 3 (Mid right) -->
+    <path d="M 622 553 L 684 553 L 684 650 C 650 655, 630 645, 622 610 Z" fill="#ffffff" stroke="#023b58" stroke-width="3" fill-opacity="0.95" />
+    <path d="M 622 553 L 640 585 L 626 618" fill="none" stroke="#e9ecef" stroke-width="3" />
+
+    <!-- Cliff 2 (Center) -->
+    <g>
+      <!-- Main white volume -->
+      <path d="M 478 506 L 566 506 L 566 668 C 510 670, 485 630, 478 565 Z" fill="#ffffff" stroke="#023b58" stroke-width="4" />
+      <path d="M 478 506 L 505 550 L 485 610 L 478 565" fill="none" stroke="#e9ecef" stroke-width="4" />
+    </g>
+
+    <!-- Cliff 1 (Front left, larger primary cliff) -->
+    <g>
+      <path d="M 306 451 L 415 451 L 415 670 C 340 680, 315 610, 306 520 Z" fill="#ffffff" stroke="#023b58" stroke-width="5" />
+      <!-- Top crest overlay and internal shade line -->
+      <path d="M 306 451 L 335 490 L 315 560 L 306 520" fill="none" stroke="#e9ecef" stroke-width="5" opacity="0.9" />
+    </g>
+    
+    <!-- Left Cliff Margin/Sliver (Far left hill) -->
+    <g>
+      <path d="M 92 510 L 308 451 L 308 748 C 190 770, 100 720, 92 610 Z" fill="#ffffff" stroke="#023b58" stroke-dasharray="none" stroke-width="4" fill-opacity="0.9" />
+      <path d="M 92 510 L 140 550 L 110 620 L 92 610" fill="none" stroke="#e9ecef" stroke-width="4" />
+    </g>
+    
+    <!-- Pathway overlap to mask boundary at Cliff joints cleanly -->
+    <path d="M 324 948 C 390 890, 480 840, 480 770 C 480 710, 430 690, 480 668 C 445 690, 520 720, 520 770 C 520 840, 420 890, 560 948 Z" fill="#ffffff" />
+  </g>
+
+  <!-- WiFi Symbol and Sun (centered in the sky, outside elements but inside the card borders for perfect positioning) -->
+  <!-- Sun/Golden-orange center dot at (500, 400) -->
+  <circle cx="500" cy="402" r="30" fill="#e09f2d" />
+
+  <!-- WiFi Signal Arcs (Dark blue matching the palette) -->
+  <!-- Arc 1 (Inner loop) -->
+  <path d="M 445 352 A 78 78 0 0 1 555 352" fill="none" stroke="#034769" stroke-width="16" stroke-linecap="round" />
+  <!-- Arc 2 (Middle loop) -->
+  <path d="M 390 297 A 156 156 0 0 1 610 297" fill="none" stroke="#034769" stroke-width="16" stroke-linecap="round" />
+  <!-- Arc 3 (Outer loop) -->
+  <path d="M 334 241 A 235 235 0 0 1 666 241" fill="none" stroke="#034769" stroke-width="16" stroke-linecap="round" />
+</svg>

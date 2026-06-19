@@ -56,6 +56,7 @@ import { TownSearch } from "./components/TownSearch";
 import { TownPage } from "./components/TownPage";
 import { PostcodePage } from "./components/PostcodePage";
 import { AdminDashboard } from "./components/AdminDashboard";
+import { AdminLogin } from "./components/AdminLogin";
 import { AdIntegrationHub } from "./components/AdIntegrationHub";
 import { CookieBanner } from "./components/CookieBanner";
 import { BroadbandNewsTicker } from "./components/BroadbandNewsTicker";
@@ -77,6 +78,9 @@ import { providerDirectoryData } from "./data/providerDirectory";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>("home"); // "home" | "best-deals" | "alt-net" | "mainstream" | "advertise" | "list-provider" | "admin" | "town-<id>" | "privacy" | "terms" | "cookie" | "contact" | "postcode-<prefix>"
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
+    return sessionStorage.getItem("admin_authenticated") === "true";
+  });
   const [filters, setFilters] = useState<FilterState>(initialFilterState);
   
   // Selection category trigger
@@ -1333,7 +1337,14 @@ export default function App() {
 
             {/* 8. ADMIN DASHBOARD ROUTE */}
             {activeTab === "admin" && (
-              <AdminDashboard />
+              isAdminAuthenticated ? (
+                <AdminDashboard />
+              ) : (
+                <AdminLogin onLoginSuccess={() => {
+                  sessionStorage.setItem("admin_authenticated", "true");
+                  setIsAdminAuthenticated(true);
+                }} />
+              )
             )}
 
             {/* 9. PRIVATE POLICY TAB */}

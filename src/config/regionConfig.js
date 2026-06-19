@@ -24,7 +24,7 @@ export const regions = {
     logoPath: "/favicon.svg",
     faviconPath: "/favicon.svg",
     appIconPath: "/icons/wbbw-app-icon.png",
-    ogImagePath: "/icons/og-image.png",
+    ogImagePath: "/og-image.svg",
     nearbyRegions: ["Somerset", "Gloucestershire", "Dorset", "Hampshire", "Berkshire"],
     providerRelevance: {
       wessex: "regionally_relevant",
@@ -53,7 +53,7 @@ export const regions = {
     logoPath: "/Kent-Best-Broadband-Wi-Fi-Finder/icons/kent-broadband-logo.png",
     faviconPath: "/Kent-Best-Broadband-Wi-Fi-Finder/icons/favicon-32.png",
     appIconPath: "/Kent-Best-Broadband-Wi-Fi-Finder/icons/android-chrome-512.png",
-    ogImagePath: "/Kent-Best-Broadband-Wi-Fi-Finder/og/kent-broadband-og.png",
+    ogImagePath: "/Kent-Best-Broadband-Wi-Fi-Finder/og-image.svg",
     homepageTitle: "Find local broadband options for Kent villages and towns",
     homepageSubtitle: "Compare full fibre networks, alternative networks, 5G home broadband, wireless and national providers across Kent. Search your town, village or postcode area and request an address-level check.",
     seoTitle: "Best Broadband for Kent Villages and Towns | Kent Broadband Finder",

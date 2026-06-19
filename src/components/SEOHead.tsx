@@ -6,6 +6,7 @@
 import React, { useEffect } from "react";
 import { SeoPageData } from "../types";
 import { JsonLdSchema } from "./JsonLdSchema";
+import siteConfig from "../config/siteConfig";
 
 interface SEOHeadProps {
   seoData: SeoPageData;
@@ -42,10 +43,26 @@ export function SEOHead({ seoData }: SEOHeadProps) {
       canonicalEl.setAttribute("href", seoData.canonicalUrl);
     }
 
+    // Determine absolute social card image dynamically based on region configuration
+    const getAbsoluteSocialImage = (fallbackImg?: string) => {
+      if (siteConfig.ogImagePath) {
+        if (siteConfig.ogImagePath.startsWith("http")) {
+          return siteConfig.ogImagePath;
+        }
+        const baseDomain = siteConfig.regionSlug === "kent"
+          ? "https://bestukbroadband.github.io"
+          : "https://www.wiltshirebroadbandfinder.co.uk";
+        return `${baseDomain}${siteConfig.ogImagePath}`;
+      }
+      return fallbackImg || "";
+    };
+
+    const resolvedSocialImage = getAbsoluteSocialImage(seoData.ogImage);
+
     // 4. Open Graph (OG)
     updateOrCreateMeta("property", "og:title", seoData.ogTitle || seoData.pageTitle);
     updateOrCreateMeta("property", "og:description", seoData.ogDescription || seoData.metaDescription);
-    updateOrCreateMeta("property", "og:image", seoData.ogImage);
+    updateOrCreateMeta("property", "og:image", resolvedSocialImage);
     updateOrCreateMeta("property", "og:url", seoData.canonicalUrl);
     updateOrCreateMeta("property", "og:type", "website");
 
@@ -53,7 +70,7 @@ export function SEOHead({ seoData }: SEOHeadProps) {
     updateOrCreateMeta("name", "twitter:card", "summary_large_image");
     updateOrCreateMeta("name", "twitter:title", seoData.twitterTitle || seoData.ogTitle);
     updateOrCreateMeta("name", "twitter:description", seoData.twitterDescription || seoData.ogDescription);
-    updateOrCreateMeta("name", "twitter:image", seoData.twitterImage);
+    updateOrCreateMeta("name", "twitter:image", resolvedSocialImage);
 
     // 6. Keywords
     if (seoData.primaryKeyword) {
