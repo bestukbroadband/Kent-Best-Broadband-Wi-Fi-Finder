@@ -7,6 +7,7 @@ import React from "react";
 import { Star, ShieldAlert, Check, AlertCircle, ArrowRight, ArrowUp, ArrowDown, Calendar, Tag, MapPin, Award } from "lucide-react";
 import { getProviderLinkByName } from "../data/providerLinks";
 import { buildTrackedUrl } from "../data/trackingConfig";
+import siteConfig from "../config/siteConfig";
 
 export interface WeeklyOfferHighlightProps {
   offerId?: string;
@@ -36,37 +37,40 @@ export interface WeeklyOfferHighlightProps {
   onEnquire?: (providerName: string, packageName: string) => void;
 }
 
-export function WeeklyOfferHighlight({
-  offerId = "weekly-giga-01",
-  providerName = "Voneus Broadband",
-  packageName = "Gigabit Rural Fibre",
-  offerHeadline = "Fast full fibre option for selected Wiltshire towns",
-  postcodeTargeting = "SN10, SN11, BA14, BA15, SP1, SP2",
-  townTargeting = "Worton, Devizes, Calne, lacock, Melksham & parished villages",
-  monthlyPrice = 29.99,
-  contractLength = 24,
-  averageDownloadSpeed = 900,
-  averageUploadSpeed = 900,
-  setupFee = 0,
-  routerIncluded = true,
-  knownPriceRise = "Fixed rate lock - no mid-contract inflation price rises during initial contract period",
-  offerValidUntil = "June 30, 2026",
-  editorScore = 8.4,
-  editorVerdict = "Outstanding rural alternative to copper services with absolute price stability.",
-  editorNotes = "This offer looks strong where full fibre is actually available, especially for households moving from older copper based services. Check the contract length, install date and any annual price change before ordering.",
-  bestFor = "Rural remote villages & homeworkers requiring synchronous speeds",
-  thingsToWatch = [
-    "Subject to detailed local optical line survey",
-    "24-month commitment applies to lock in the special pricing rate",
-    "Availability is limited strictly to properties on the Wiltshire Altnet rollout cluster"
-  ],
-  ctaLabel = "Check my postcode",
-  ctaUrl = "#",
-  isSponsored = false,
-  sponsorLabel = "Sponsored Spotlight",
-  lastReviewedDate = "June 8, 2026",
-  onEnquire
-}: WeeklyOfferHighlightProps) {
+export function WeeklyOfferHighlight(props: WeeklyOfferHighlightProps) {
+  const isKent = siteConfig.regionSlug === "kent";
+
+  const {
+    offerId = "weekly-giga-01",
+    providerName = "Voneus Broadband",
+    packageName = "Gigabit Rural Fibre",
+    offerHeadline = isKent ? "Fast full fibre option for selected Kent towns" : "Fast full fibre option for selected Wiltshire towns",
+    postcodeTargeting = isKent ? "ME19, CT10, DA10, TN13" : "SN10, SN11, BA14, BA15, SP1, SP2",
+    townTargeting = isKent ? "Kings Hill, Maidstone, Sevenoaks, Canterbury & parished villages" : "Worton, Devizes, Calne, lacock, Melksham & parished villages",
+    monthlyPrice = 29.99,
+    contractLength = 24,
+    averageDownloadSpeed = 900,
+    averageUploadSpeed = 900,
+    setupFee = 0,
+    routerIncluded = true,
+    knownPriceRise = "Fixed rate lock - no mid-contract inflation price rises during initial contract period",
+    offerValidUntil = "June 30, 2026",
+    editorScore = 8.4,
+    editorVerdict = "Outstanding rural alternative to copper services with absolute price stability.",
+    editorNotes = "This offer looks strong where full fibre is actually available, especially for households moving from older copper based services. Check the contract length, install date and any annual price change before ordering.",
+    bestFor = "Rural remote villages & homeworkers requiring synchronous speeds",
+    thingsToWatch = [
+      "Subject to detailed local optical line survey",
+      "24-month commitment applies to lock in the special pricing rate",
+      `Availability is limited strictly to properties on the ${siteConfig.regionName} Altnet rollout cluster`
+    ],
+    ctaLabel = "Check my postcode",
+    ctaUrl = "#",
+    isSponsored = false,
+    sponsorLabel = "Sponsored Spotlight",
+    lastReviewedDate = "June 8, 2026",
+    onEnquire
+  } = props;
   
   // Dynamically look up the provider's actual tracking link
   const linkData = getProviderLinkByName(providerName);

@@ -62,7 +62,7 @@ export function AdvertBanner({
     return "top-leaderboard";
   })();
 
-  // AD PLACEMENT MODE: "standard" (Wiltshire Altnets) | "google" (AdSense Responsive) | "aws" (Amazon Affiliate / AWS Ads)
+  // AD PLACEMENT MODE: "standard" (Regional Altnets) | "google" (AdSense Responsive) | "aws" (Amazon Affiliate / AWS Ads)
   const [adType, setAdType] = useState<"standard" | "google" | "aws">("standard");
   const [showConfig, setShowConfig] = useState(false);
   const [copied, setCopied] = useState(false);

@@ -5,6 +5,7 @@
 
 import React, { useState } from "react";
 import { Send, FileText } from "lucide-react";
+import siteConfig from "../config/siteConfig";
 
 export function ListProviderForm() {
   const [formData, setFormData] = useState({
@@ -62,7 +63,7 @@ export function ListProviderForm() {
         </div>
         <h4 className="text-base font-bold text-brand-green font-sans">Proposal Lodged Successfully</h4>
         <p className="text-xs text-stone-650 leading-relaxed max-w-sm mx-auto">
-          Thank you. Your listing request is registered. Our database compliance auditor will cross-examine your package files against active Wiltshire road scopes before activating your card listing.
+          Thank you. Your listing request is registered. Our database compliance auditor will cross-examine your package files against active {siteConfig.regionName} road scopes before activating your card listing.
         </p>
       </div>
     );
@@ -175,14 +176,14 @@ export function ListProviderForm() {
       </div>
 
       <div className="space-y-1">
-        <label className="text-[11px] font-bold text-brand-green block uppercase tracking-wider">Wiltshire Towns/Villages Covered *</label>
+        <label className="text-[11px] font-bold text-brand-green block uppercase tracking-wider">{siteConfig.regionName} Towns/Villages Covered *</label>
         <input
           type="text"
           name="areasCovered"
           required
           value={formData.areasCovered}
           onChange={handleInputChange}
-          placeholder="e.g. Calne, Melksham, Devizes, Worton"
+          placeholder={siteConfig.regionSlug === "kent" ? "e.g. Maidstone, Kings Hill, Sevenoaks, Canterbury" : "e.g. Calne, Melksham, Devizes, Worton"}
           className="w-full px-3 py-2 text-xs border border-stone-250 rounded-lg bg-white text-stone-900 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-hidden"
         />
       </div>

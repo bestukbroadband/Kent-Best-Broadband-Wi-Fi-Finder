@@ -2187,12 +2187,12 @@ export const providerDirectoryData: DirectoryProvider[] = rawProviderDirectoryDa
     copy.knownRegions = copy.knownRegions.map(r => r === "Wiltshire" ? "Kent" : r);
   }
 
-  if (copy.providerId === "wessex" || copy.providerId === "toob") {
+  if (copy.providerId === "wessex" || copy.providerId === "toob" || copy.providerId === "truespeed") {
     copy.wiltshireRelevance = false;
   }
 
   return copy;
-});
+}).filter(p => !(activeRegionKey === "kent" && p.providerId === "truespeed"));
 
 // Handles deduplication of raw manual or external provider feeds
 export function dedupeProviders(providers: DirectoryProvider[]): DirectoryProvider[] {

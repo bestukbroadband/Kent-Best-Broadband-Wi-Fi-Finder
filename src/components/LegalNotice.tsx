@@ -6,6 +6,7 @@
 import React from "react";
 import { Info } from "lucide-react";
 import { siteSettingsData } from "../data/siteSettings";
+import siteConfig from "../config/siteConfig";
 
 export function LegalNotice() {
   return (
@@ -21,7 +22,7 @@ export function LegalNotice() {
             {siteSettingsData.disclaimers.commissionNotice} This independent platform gathers and displays public announcements, direct ISP submissions, and local engineering data tracks to aid rural homes and agricultural businesses.
           </p>
           <p className="text-[11px] text-slate-400">
-            Wiltshire Broadband Finder is owned and operated by <span className="font-black text-brand-gold">{siteSettingsData.owner.companyName}</span> (Company number {siteSettingsData.owner.companyNumber}). Registered Office in the UK.
+            {siteConfig.siteName} is owned and operated by <span className="font-black text-brand-gold">{siteSettingsData.owner.companyName}</span> (Company number {siteSettingsData.owner.companyNumber}). Registered Office in the UK.
           </p>
         </div>
       </div>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" fill="none">
+  <!-- Rounded square background (matching BrandLogo appIcon) -->
+  <rect width="500" height="500" rx="95" fill="#f9f7f1" />
+  
+  <!-- WiFi Arches -->
+  <path
+    d="M165 115 C205 75, 295 75, 335 115"
+    stroke="#ea580c"
+    stroke-width="28"
+    stroke-linecap="round"
+  />
+  <path
+    d="M195 150 C222 120, 278 120, 305 150"
+    stroke="#ea580c"
+    stroke-width="24"
+    stroke-linecap="round"
+  />
+  <path
+    d="M225 185 C238 168, 262 168, 275 185"
+    stroke="#ea580c"
+    stroke-width="18"
+    stroke-linecap="round"
+  />
+  
+  <!-- Golden Central Dot / Sun transmitter -->
+  <circle cx="250" cy="225" r="21" fill="#fbbf24" />
+
+  <!-- Stonehenge Stones (Teal Monoliths) Arranged Geometrically -->
+  <!-- Outermost Left -->
+  <path
+    d="M150 340 L165 300 Q168 290, 178 295 L190 300 Q192 310, 185 340 Z"
+    fill="#ea580c"
+  />
+  <!-- Inner Left -->
+  <path
+    d="M195 330 L212 245 Q216 230, 235 235 L248 240 Q250 255, 230 330 Z"
+    fill="#ea580c"
+  />
+  <!-- Center Pillar (Tallest) -->
+  <path
+    d="M240 330 L248 220 Q250 205, 270 205 L285 220 Q285 240, 275 330 Z"
+    fill="#ea580c"
+  />
+  <!-- Inner Right -->
+  <path
+    d="M280 330 L295 250 Q298 238, 318 242 L330 252 Q328 268, 312 330 Z"
+    fill="#ea580c"
+  />
+   <!-- Outermost Right -->
+  <path
+    d="M333 345 L346 300 Q348 290, 358 294 L370 299 Q370 310, 363 345 Z"
+    fill="#ea580c"
+  />
+
+  <!-- Lower Hills Contour with White winding path -->
+  <!-- Hills background container block -->
+  <path
+    d="M70 350 Q160 335, 250 350 Q340 335, 430 350 C430 460, 70 460, 70 350 Z"
+    fill="#ea580c"
+  />
+  
+  <!-- Winding Cream Path -->
+  <path
+    d="M145 448 C200 420, 210 395, 245 372 C280 350, 305 352, 345 352 C340 356, 315 356, 290 375 Q265 395, 205 448 Z"
+    fill="#fffbeb"
+  />
+</svg>

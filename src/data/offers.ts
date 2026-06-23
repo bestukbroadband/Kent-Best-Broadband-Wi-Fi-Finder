@@ -321,4 +321,4 @@ export const offersData: Offer[] = rawOffersData.map((offer) => {
   }
 
   return copy;
-});
+}).filter(o => !(activeRegionKey === "kent" && o.providerId === "truespeed"));

@@ -81,6 +81,48 @@ export function SEOHead({ seoData }: SEOHeadProps) {
     // 7. Robots (index/noindex)
     const robotsVal = seoData.indexStatus === "noindex" ? "noindex, follow" : "index, follow";
     updateOrCreateMeta("name", "robots", robotsVal);
+
+    // 8. Dynamic Favicon & Touch Icon Resolver for Wiltshire vs Kent and Subfolders
+    const resolveDynamicPath = (path: string) => {
+      if (!path) return "";
+      if (path.startsWith("http") || !path.startsWith("/")) return path;
+      if (typeof window !== "undefined") {
+        const basePath = siteConfig.githubPagesBasePath || "";
+        const isSubdirActive = basePath && window.location.pathname.startsWith(basePath);
+        if (isSubdirActive) {
+          const cleanBase = basePath.endsWith("/") ? basePath.slice(0, -1) : basePath;
+          return `${cleanBase}${path}`;
+        }
+      }
+      return path;
+    };
+
+    if (siteConfig.faviconPath) {
+      const iconUrl = resolveDynamicPath(siteConfig.faviconPath);
+      let iconEl = document.querySelector('link[rel="icon"]');
+      if (!iconEl) {
+        iconEl = document.createElement("link");
+        iconEl.setAttribute("rel", "icon");
+        document.head.appendChild(iconEl);
+      }
+      if (iconUrl.endsWith(".svg")) {
+        iconEl.setAttribute("type", "image/svg+xml");
+      } else {
+        iconEl.setAttribute("type", "image/png");
+      }
+      iconEl.setAttribute("href", iconUrl);
+    }
+
+    if (siteConfig.appIconPath) {
+      const appleIconUrl = resolveDynamicPath(siteConfig.appIconPath);
+      let appleIconEl = document.querySelector('link[rel="apple-touch-icon"]');
+      if (!appleIconEl) {
+        appleIconEl = document.createElement("link");
+        appleIconEl.setAttribute("rel", "apple-touch-icon");
+        document.head.appendChild(appleIconEl);
+      }
+      appleIconEl.setAttribute("href", appleIconUrl);
+    }
   }, [seoData]);
 
   // Handle rich JSON-LD parsing safely

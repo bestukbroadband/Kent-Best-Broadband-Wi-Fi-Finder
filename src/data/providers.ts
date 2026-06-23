@@ -1336,6 +1336,6 @@ export const providersData: Provider[] = rawProvidersData.map((rawP) => {
     showOnPostcodePages: p.showOnPostcodePages !== false,
     requiresAddressCheck: p.requiresAddressCheck !== false,
   };
-});
+}).filter(p => !(activeRegionKey === "kent" && (p.providerId === "truespeed" || p.id === "truespeed")));
 
 export type { Provider };

@@ -5,13 +5,14 @@
 
 import React, { useState, useEffect } from "react";
 import { ShieldCheck, X, Cookie, ArrowRight } from "lucide-react";
+import siteConfig from "../config/siteConfig";
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Check if the user has already made a decision
-    const hasConsented = localStorage.getItem("wiltshire_broad_cookie_consent");
+    const hasConsented = localStorage.getItem(`${siteConfig.regionSlug}_broad_cookie_consent`);
     if (!hasConsented) {
       // Trigger a subtle, elegant lazy delay to slide up smoothly
       const timer = setTimeout(() => {
@@ -22,7 +23,7 @@ export function CookieBanner() {
   }, []);
 
   const handleConsent = (approved: boolean) => {
-    localStorage.setItem("wiltshire_broad_cookie_consent", approved ? "accepted" : "declined");
+    localStorage.setItem(`${siteConfig.regionSlug}_broad_cookie_consent`, approved ? "accepted" : "declined");
     setIsVisible(false);
   };
 
@@ -47,7 +48,7 @@ export function CookieBanner() {
                 Privacy & Cookies
               </h4>
               <p className="text-[10px] text-emerald-400 font-mono tracking-widest uppercase font-bold">
-                Wiltshire Broadband Finder
+                {siteConfig.siteName}
               </p>
             </div>
           </div>
@@ -62,7 +63,7 @@ export function CookieBanner() {
 
         {/* Content Description */}
         <p className="text-xs text-slate-300 leading-relaxed font-sans">
-          We utilise essential cookies, traffic analysis, and referral indicators to compile listed connection options across Wiltshire. Sponsored listings and partners are always explicitly marked.
+          We utilise essential cookies, traffic analysis, and referral indicators to compile listed connection options across {siteConfig.regionName}. Sponsored listings and partners are always explicitly marked.
         </p>
 
         {/* Action Buttons */}

@@ -190,7 +190,7 @@ export function ProviderDirectoryView({
     return createFAQSchema([
       {
         question: "What is an alternative network (AltNet) provider?",
-        answer: "An alternative network (AltNet) is a separate broadband network independent of Openreach or Virgin Media. Examples include Gigaclear, Wessex Internet, Truespeed and Zzoomm, which build dedicated full-fibre lines to towns and parished villages."
+        answer: `An alternative network (AltNet) is a separate broadband network independent of Openreach or Virgin Media. Examples include Gigaclear, Wessex Internet, ${siteConfig.regionSlug === "kent" ? "Trooli" : "Truespeed"} and Zzoomm, which build dedicated full-fibre lines to towns and parished villages.`
       },
       {
         question: "How do I check if a broadband provider is available on my street?",

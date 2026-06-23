@@ -119,7 +119,7 @@ export function EditorScoreCard({ provider, isDark = false }: EditorScoreCardPro
         <div className="md:col-span-7 space-y-2">
           <span className="text-[10.5px] uppercase font-extrabold tracking-widest text-slate-400 flex items-center gap-1 leading-none">
             <Award className="h-3.5 w-3.5 text-brand-gold" />
-            Wiltshire Adviser Assessment:
+            {siteConfig.regionName} Adviser Assessment:
           </span>
           <p className={`text-xs ${bodyText} leading-relaxed font-semibold`}>
             {notes}

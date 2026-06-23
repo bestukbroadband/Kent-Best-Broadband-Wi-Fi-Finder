@@ -14,6 +14,7 @@ import { AdvertBanner } from "./AdvertBanner";
 import { Compass, MapPin, ChevronRight, HelpCircle, AlertCircle, Building2, Landmark } from "lucide-react";
 import { InternalSEOLinks } from "./InternalSEOLinks";
 import { JsonLdSchema } from "./JsonLdSchema";
+import siteConfig from "../config/siteConfig";
 import {
   createWebsiteSchema,
   createOrganisationSchema,
@@ -61,17 +62,21 @@ export function TownPage({
     const websiteSchema = createWebsiteSchema();
     const organisationSchema = createOrganisationSchema();
     
+    const baseDomain = siteConfig.regionSlug === "wiltshire"
+      ? "https://www.wiltshirebroadbandfinder.co.uk"
+      : "https://bestukbroadband.github.io/Kent-Best-Broadband-Wi-Fi-Finder";
+
     const webpageSchema = createWebPageSchema(
-      `Broadband in ${town.name} | Wiltshire Local Parish Finder`,
+      `Broadband in ${town.name} | ${siteConfig.regionName} Local Parish Finder`,
       town.shortIntro,
-      `https://www.wiltshirebroadbandfinder.co.uk/town/${town.id}`,
+      `${baseDomain}/town/${town.id}`,
       `broadband connection options in ${town.name}`,
       "2026-06-08T12:05:14Z"
     );
 
     const breadcrumbSchema = createBreadcrumbSchema([
-      { name: "Home", url: "https://www.wiltshirebroadbandfinder.co.uk/" },
-      { name: `Broadband in ${town.name}`, url: `https://www.wiltshirebroadbandfinder.co.uk/town/${town.id}` }
+      { name: "Home", url: `${baseDomain}/` },
+      { name: `Broadband in ${town.name}`, url: `${baseDomain}/town/${town.id}` }
     ]);
 
     const faqSchema = town.faqs && town.faqs.length > 0
@@ -82,7 +87,7 @@ export function TownPage({
       activeProviders.slice(0, 6).map((item, idx) => ({
         position: idx + 1,
         name: `Listed provider options: ${item.providerName}`,
-        url: `https://www.wiltshirebroadbandfinder.co.uk/town/${town.id}`
+        url: `${baseDomain}/town/${town.id}`
       }))
     );
 
@@ -92,7 +97,7 @@ export function TownPage({
         item.monthlyPriceFrom || item.monthlyPrice || 29.99,
         "GBP",
         item.providerName,
-        `https://www.wiltshirebroadbandfinder.co.uk/town/${town.id}`
+        `${baseDomain}/town/${town.id}`
       );
     });
 
@@ -143,7 +148,7 @@ export function TownPage({
       {/* BREADCRUMBS BAR */}
       <div className="text-[10px] uppercase font-mono font-bold tracking-widest text-slate-400 flex items-center gap-1">
         <button onClick={onBackToHome} className="hover:text-brand-gold cursor-pointer transition-colors">
-          Wiltshire Finder
+          {siteConfig.shortName || "Broadband Finder"}
         </button>
         <ChevronRight className="h-3 w-3 text-slate-350" />
         <span className="text-slate-500">Parishes</span>
@@ -162,7 +167,7 @@ export function TownPage({
           <div>
             <h1 className="text-2xl md:text-3xl font-black tracking-tight flex items-center gap-2 font-sans">
               <MapPin className="h-6 w-6 text-brand-gold shrink-0" />
-              Broadband in {town.name}, Wiltshire
+              Broadband in {town.name}, {siteConfig.regionName}
             </h1>
             <p className="text-xs text-slate-400 font-mono mt-1">
               Primary Postcode Sectors: {town.postcodeExamples.join(" &bull; ")}
@@ -185,7 +190,7 @@ export function TownPage({
       <div className="bg-[#F9F7F2] border border-brand-gold/45 p-4 rounded-xl flex gap-3 text-xs leading-relaxed text-[#1B3022]">
         <AlertCircle className="h-4.5 w-4.5 text-brand-gold shrink-0 mt-0.5" />
         <div>
-          <span className="font-bold">Local Line Variance Notice:</span> Broadband speeds and alternative full-fibre networks are highly variable across Wiltshire parishes. You might reside on an active street served by {activeProviders[0]?.providerName || "national brands"} while the next road is pending build completion. Always submit a query to verify current line parameters.
+          <span className="font-bold">Local Line Variance Notice:</span> Broadband speeds and alternative full-fibre networks are highly variable across {siteConfig.regionName} parishes. You might reside on an active street served by {activeProviders[0]?.providerName || "national brands"} while the next road is pending build completion. Always submit a query to verify current line parameters.
         </div>
       </div>
 
@@ -225,7 +230,7 @@ export function TownPage({
                 Best Ranked Broadband Offers in {town.name}
               </h2>
               <p className="text-xs text-slate-500 leading-relaxed">
-                Ranks calculated across primary Wiltshire altnets and Openreach providers.
+                Ranks calculated across primary {siteConfig.regionName} altnets and Openreach providers.
               </p>
             </div>
             
@@ -270,7 +275,7 @@ export function TownPage({
               Nearby Parishes & Towns
             </h4>
             <p className="text-[11px] text-slate-300 leading-normal font-semibold font-sans">
-              Compare broadband infrastructure in neighboring local rural communities within Wiltshire:
+              Compare broadband infrastructure in neighboring local rural communities within {siteConfig.regionName}:
             </p>
             <div className="flex flex-col gap-1.5 font-sans">
               {nearbyTowns.length > 0 ? (

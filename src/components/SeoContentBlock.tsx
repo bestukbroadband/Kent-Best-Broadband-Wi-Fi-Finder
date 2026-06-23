@@ -6,6 +6,7 @@
 import React from "react";
 import { AlertCircle, FileText, ArrowRight, CheckCircle2, ChevronRight, HelpCircle } from "lucide-react";
 import { SeoPageData } from "../types";
+import siteConfig from "../config/siteConfig";
 
 export interface SeoContentBlockProps {
   key?: string;
@@ -57,7 +58,7 @@ export function SeoContentBlock({
             </p>
           )}
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-medium">
-            The landscape of digital networks in Wiltshire is undergoing rapid expansion. Alternative broadband networks (altnets) are physical network system operators building proprietary glass fibre conduits. By contrast, mainstream national providers serve homes using either traditional copper lines (often leading to high speed drop-offs in parished zones) or hybrid coaxial pathways. 
+            The landscape of digital networks in {siteConfig.regionName} is undergoing rapid expansion. Alternative broadband networks (altnets) are physical network system operators building proprietary glass fibre conduits. By contrast, mainstream national providers serve homes using either traditional copper lines (often leading to high speed drop-offs in parished zones) or hybrid coaxial pathways. 
           </p>
           <p className="text-xs sm:text-sm text-slate-350 leading-relaxed">
             When choosing standard or promotional deals, always review whether a physical site survey or installation fee applies to non-standard properties. To secure direct, unhindered broadband delivery, we advise making a full postcode availability inquiry.

@@ -5,6 +5,7 @@
 
 import React, { useState } from "react";
 import { Copy, Check, ShieldAlert, Sparkles, Code2, Cpu, Smartphone, Layout, HelpCircle, ExternalLink, ShoppingCart, Star, Cookie } from "lucide-react";
+import siteConfig from "../config/siteConfig";
 
 export function AdIntegrationHub() {
   const [copiedText, setCopiedText] = useState<string | null>(null);
@@ -15,7 +16,7 @@ export function AdIntegrationHub() {
   // Custom states for Cookie Banner
   const [cookieBrandColor, setCookieBrandColor] = useState("#0284c7");
   const [cookieTitle, setCookieTitle] = useState("We Value Your Privacy");
-  const [cookieDesc, setCookieDesc] = useState("We use cookies to analyze regional traffic, enhance browsing speed, and support local Wiltshire broadband recommendations through relevant affiliate positions.");
+  const [cookieDesc, setCookieDesc] = useState(`We use cookies to analyze regional traffic, enhance browsing speed, and support local ${siteConfig.regionName} broadband recommendations through relevant affiliate positions.`);
   const [cookiePrivacyLink, setCookiePrivacyLink] = useState("/privacy");
   const [cookieAcceptLabel, setCookieAcceptLabel] = useState("Accept All Cookies");
   const [cookieDeclineLabel, setCookieDeclineLabel] = useState("Decline");
@@ -26,7 +27,7 @@ export function AdIntegrationHub() {
   const [adSlotSidebar, setAdSlotSidebar] = useState("5432109876");
 
   // Custom states for Amazon Associates
-  const [assocTag, setAssocTag] = useState("wiltshirebroad-21");
+  const [assocTag, setAssocTag] = useState(`${siteConfig.regionSlug}broad-21`);
   const [framework, setFramework] = useState<"html" | "react" | "jekyll">("html");
 
   // Custom states for Media.net
