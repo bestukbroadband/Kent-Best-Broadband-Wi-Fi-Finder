@@ -191,6 +191,15 @@ export function Footer({ onNavClick, activeTab }: FooterProps) {
             <p>{siteSettingsData.disclaimers.footerCopyright}</p>
             <p>{siteSettingsData.disclaimers.footerTradingStyle}</p>
           </div>
+
+          {/* BUSINESS DIRECTORY BADGE */}
+          <div className="pt-4 border-t border-slate-700/40">
+            <center>
+              <a href="https://www.business-directory.org.uk/business/122859_Best-Broadband-and-Wi-Fi-in-Kent.html" target="_blank" rel="noopener">
+                <img src="https://www.business-directory.org.uk/banners/business-directory-badge.svg" alt="UK Business Directory" width="200" height="40" />
+              </a>
+            </center>
+          </div>
         </div>
 
       </div>
